@@ -29,22 +29,9 @@
             font-weight: bold;
         }
 
-        #greenBox {
-            background-color: green;
-
-        }
-
-        #yellowBox {
-            background-color: yellow;
-        }
-
-        #redBox {
-            background-color: red;
-        }
-
-        .box1,
-        .box2,
-        .box3 {
+        #box1,
+        #box2,
+        #box3 {
 
             width: 200px;
             height: 200px;
@@ -53,9 +40,9 @@
             margin: 10px;
         }
 
-        .box1:hover,
-        .box2:hover,
-        .box3:hover {
+        #box1:hover,
+        #box2:hover,
+        #box3:hover {
             transform: scale(1.080);
             border: 3px solid black;
             font-weight: bold;
@@ -67,137 +54,67 @@
             margin-top: 300px;
         }
 
-        .borderStyle,
-        .borderStyle2 {
+        .borderStyle {
             font-weight: bold;
             border: 3px solid black;
             transform: scale(1.080);
         }
-        
     </style>
 </head>
 
 <body id="body">
+    <div id="app"></div>
     <div class="main">
         <div class="grid">
-            <div>
-                <div id="greenBox" onclick="fargeVelger('green')">Green</div>
-            </div>
-            <div>
-                <div id="yellowBox" onclick="fargeVelger('yellow')">Yellow</div>
-            </div>
-            <div>
-                <div id="redBox" onclick="fargeVelger('red')">Red</div>
-            </div>
+            <div id="greenBox" onclick="fargeVelger('green')" style="background-color: green;">Green</div>
+            <div id="yellowBox" onclick="fargeVelger('yellow')" style="background-color: yellow;">Yellow</div>
+            <div id="redBox" onclick="fargeVelger('red')" style="background-color: red;">Red</div>
             <button onclick="bytteFarge()">Bytte farge</button>
-            <button onclick="bytteFargeFont()">Bytte farge font</button>
-            <button onclick="resetFarger()">Reset Farger</button>
+            <button onclick="bytteBakgrunn()">Bytte bakgrunn</button>
         </div>
         <div class="boxes">
             <div>
-                <div class="box1" id="box1" onclick="select(1)">Box1</div>
+                <div id="box1" onclick="selectDiv(this)">Box1</div>
             </div>
             <div>
-                <div class="box2" id="box2" onclick="select(2)">Box2</div>
+                <div id="box2" onclick="selectDiv(this)">Box2</div>
             </div>
-            
         </div>
     </div>
     </div>
-
     <script>
-        var colorPicker = 0;
-        var divPicker = 0;
-        
-        
         function fargeVelger(color) {
             colorPicker = color;
-            
             if (colorPicker == 'green') {
-                document.getElementById("greenBox").classList.toggle("borderStyle2");
+                document.getElementById("greenBox").classList.toggle("borderStyle");
             } else {
-                
-                document.getElementById("greenBox").classList.remove("borderStyle2");
+
+                document.getElementById("greenBox").classList.remove("borderStyle");
             }
             if (colorPicker == 'yellow') {
-                document.getElementById("yellowBox").classList.toggle("borderStyle2");
+                document.getElementById("yellowBox").classList.toggle("borderStyle");
             } else {
-                
-                document.getElementById("yellowBox").classList.remove("borderStyle2");
+
+                document.getElementById("yellowBox").classList.remove("borderStyle");
             }
             if (colorPicker == 'red') {
-                document.getElementById("redBox").classList.toggle("borderStyle2");
+                document.getElementById("redBox").classList.toggle("borderStyle");
             } else {
-                
-                document.getElementById("redBox").classList.remove("borderStyle2");
-            }
-        }
-        window.onclick = select(3);
-        
-        function select(number) {
-            divPicker = number;
-            console.log(select, fargeVelger, bytteFarge);
-            
-            if (divPicker == 1) {
-                document.getElementById("box1").classList.toggle("borderStyle");
-            } else {
-                document.getElementById("box1").classList.remove("borderStyle");
-            }
-            if (divPicker == 2) {
-                document.getElementById("box2").classList.toggle("borderStyle");
-            } else {
-                document.getElementById("box2").classList.remove("borderStyle");
-            }
-            
-            if (divPicker == 3) {
-                document.getElementById("body").classList.toggle("borderStyle3");
-            } else {
-                document.getElementById("body").classList.remove("borderStyle3");
-            }
-        }
-        
 
+                document.getElementById("redBox").classList.remove("borderStyle");
+            }
+        }
+        function selectDiv(clickedDiv) {
+            divPicker = clickedDiv;
+            divPicker.classList.toggle("borderStyle");
+        }
         function bytteFarge() {
-            
-            
-            if (divPicker == 1) {
-                document.getElementById('box1').style.backgroundColor = `${colorPicker}`;
-            }
-            if (divPicker == 2) {
-                document.getElementById('box2').style.backgroundColor = `${colorPicker}`;
-            }
-            if (divPicker == 3) {
-                document.getElementById('body').style.backgroundColor = `${colorPicker}`;
-               
-            }
-            
+            divPicker.style.backgroundColor = colorPicker;
+            divPicker.classList.remove("borderStyle");
         }
-        function bytteFargeFont() {
-            if (divPicker == 1) {
-                document.getElementById('box1').style.color = `${colorPicker}`;
-            }
-            if (divPicker == 2) {
-                document.getElementById('box2').style.color = `${colorPicker}`;
-            }
-            if (divPicker == 3) {
-                document.getElementById('body').style.color = `${colorPicker}`;
-            }
+        function bytteBakgrunn() {
+            document.body.style.backgroundColor = colorPicker;
         }
-        function resetFarger() {
-            document.getElementById('box1').style.color = 'black';
-            document.getElementById('box2').style.color = 'black';
-            document.getElementById('body').style.color = 'black';
-            document.getElementById('body').style.backgroundColor = 'white';
-            document.getElementById('box1').style.backgroundColor = 'gray';
-            document.getElementById('box2').style.backgroundColor = 'gray';
-        }
-
-        
-        // window.onclick = myFunction;
-
-        // function myFunction() {
-        //     document.getElementsByTagName("BODY")[0].style.backgroundColor = `${colorPicker}`;
-        // }
     </script>
 </body>
 
