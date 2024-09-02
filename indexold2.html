@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid {
+            display: flex;
+            gap: 20px;
+        }
+
+        #greenBox,
+        #yellowBox,
+        #redBox {
+            width: 100px;
+            height: 30px;
+            cursor: pointer;
+            text-align: center;
+            font-size: x-large;
+        }
+
+        #greenBox:hover,
+        #yellowBox:hover,
+        #redBox:hover {
+            transform: scale(1.080);
+            border: 3px solid black;
+            font-weight: bold;
+        }
+
+        #box1,
+        #box2,
+        #box3 {
+
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+            gap: 20px;
+            margin: 10px;
+        }
+
+        #box1:hover,
+        #box2:hover,
+        #box3:hover {
+            transform: scale(1.080);
+            border: 3px solid black;
+            font-weight: bold;
+        }
+
+        .boxes {
+            display: flex;
+            justify-content: center;
+            margin-top: 300px;
+        }
+
+        .borderStyle {
+            font-weight: bold;
+            border: 3px solid black;
+            transform: scale(1.080);
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div id="app"></div>
+    <div class="main">
+        <div class="grid">
+            <div id="greenBox" onclick="fargeVelger('green')" style="background-color: green;">Green</div>
+            <div id="yellowBox" onclick="fargeVelger('yellow')" style="background-color: yellow;">Yellow</div>
+            <div id="redBox" onclick="fargeVelger('red')" style="background-color: red;">Red</div>
+            <button onclick="bytteFarge()">Bytte farge</button>
+            <button onclick="bytteBakgrunn()">Bytte bakgrunn</button>
+        </div>
+        <div class="boxes">
+            <div>
+                <div id="box1" onclick="selectDiv(this)">Box1</div>
+            </div>
+            <div>
+                <div id="box2" onclick="selectDiv(this)">Box2</div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        function fargeVelger(color) {
+            colorPicker = color;
+            if (colorPicker == 'green') {
+                document.getElementById("greenBox").classList.toggle("borderStyle");
+            } else {
+
+                document.getElementById("greenBox").classList.remove("borderStyle");
+            }
+            if (colorPicker == 'yellow') {
+                document.getElementById("yellowBox").classList.toggle("borderStyle");
+            } else {
+
+                document.getElementById("yellowBox").classList.remove("borderStyle");
+            }
+            if (colorPicker == 'red') {
+                document.getElementById("redBox").classList.toggle("borderStyle");
+            } else {
+
+                document.getElementById("redBox").classList.remove("borderStyle");
+            }
+        }
+        function selectDiv(clickedDiv) {
+            divPicker = clickedDiv;
+            divPicker.classList.toggle("borderStyle");
+        }
+        function bytteFarge() {
+            divPicker.style.backgroundColor = colorPicker;
+            divPicker.classList.remove("borderStyle");
+        }
+        function bytteBakgrunn() {
+            document.body.style.backgroundColor = colorPicker;
+        }
+    </script>
+</body>
+
+</html>
